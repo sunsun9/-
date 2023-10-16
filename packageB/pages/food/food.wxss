@@ -1,0 +1,46 @@
+/* pages/food/food.wxss */
+.content-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 150rpx 0;
+  box-sizing: border-box;
+  margin-top: -60px;
+  font-size: 20px;
+}
+
+.shop{
+  display: flex;
+  border-bottom: 15rpx solid rgb(219, 217, 217);
+}
+
+.shop_img{
+  flex:1;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
+}
+
+.shop_text{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.collection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.shop_title{
+  align-content: center;
+  border-bottom: 1rpx solid #F5F5F5;
+  background-color: #FFFFFF
+}

@@ -1,0 +1,42 @@
+<!--pages/search/search.wxml-->
+<view class="navbar custom-class" style='height:{{navHeight}}px;'>
+  <view class="navbar-action-wrap navbar-action-group row item-center" style='top:{{navTop}}px;'>
+    <image style="width: 1rem; height: 1.2rem; " src="{{leftIcon}}" catchtap="goBack"></image>
+  </view>
+  <view class='navbar-title' style='top:{{navTop}}px'>
+    <view class="search-input">
+      <span class="search-con">
+        <view class="center-30f2b4d">
+          <!-- 自定义区域 -->
+          <image class="icon" src="{{searchIcon}}" data-postname="{{inputValue}}"></image>
+          <input class="search-size" confirm-type="search" value="{{inputValue}}" type="text" bindinput="getInputValue" placeholder="搜索美食" placeholder-class="phcolor"></input>
+          <button class="search-size" catchtap="searchbegin" style="color: black; background-color:khaki; position: absolute; right: 0; margin-right: 10rpx; text-align: center;border-radius: 30rpx;width: 25%;">搜索</button>
+        </view>
+      </span>
+    </view>
+  </view>
+</view>
+<view class="read-in">
+  <!-- 最近搜索 S -->
+    <view class="headline" wx:if="{{historyStorage.length!=0}}" hidden="{{historyStorageShow?false:true}}">
+      <view class="head-headline justify">
+        <view class="headline-size">最近搜索</view>
+        <view class="right size" catchtap="remove">清除</view>
+      </view>
+      <!-- 最近搜索内容 S -->
+      <view class="lately-main">
+        <view class="chunk" wx:for="{{historyStorage}}" wx:key="index" bindtap='routeToSearchResPage' data-index='{{index}}'>
+          <text>{{item}}</text>
+        </view>
+      </view>
+      <!-- 最近搜索内容 E -->
+    </view>
+</view>
+
+<view class="searchresult" wx:if="{{inputValue != ''}}" hidden="{{searchresult?false:true}}">
+  <view class="result" wx:for="{{searchResult}}" wx:key="id" bindtap="daohang" data-postname="{{item.result}}">
+    <view data-id='{{item.id}}' id='{{item.id}}' style="margin-top: 6%;">{{item.name}}</view>
+    
+  </view>
+</view>
+

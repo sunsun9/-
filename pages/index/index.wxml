@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class = "content">
+
+  <!--搜索框-->
+  <!--index.wxml-->
+<view class="search-container">
+  <view class="search-left">
+    <image class="search-left image" src="/images/search.png" />
+    <input class="search-left input" type="text" placeholder="搜索" catchtap="tosearch"/>
+  </view>
+</view>
+
+<!--map组件-->
+<map id="map"  bindregionchange="bindRegionChange" bindmarkertap="markerclick" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" controls="{{controls}}" style="width: {{mapw}}; height: {{maph}};" scale="{{scale}}" show-location></map>
+
+</view>
+
+

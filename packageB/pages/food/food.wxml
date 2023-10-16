@@ -1,0 +1,34 @@
+<!--pages/food/food.wxml-->
+<view class = "content">
+  <!--标题名字-->
+  <view class = "content-title">{{name}}</view>
+
+  <!-- 食物列表 -->
+  <scroll-view scroll-y="true" style="height: 700px; margin-top: -50px;"> 
+    <!--店家列表-->
+  <view class="shop" wx:for="{{foodList}}" wx:key="id">
+    <!--左侧商品图片-->
+    <view class = "shop_img" >
+      <image src = "{{item.img}}"  style="width: 110px; height: 110px; border-radius: 20px;"/>
+    </view>
+    <!--文字信息-->
+    <view class = "shop_text">
+      <view class = "collection">
+        <view>{{item.name}}</view>
+        <!-- <view ></view> -->
+          <image data-id='{{item.id}}' id='{{item.id}}' src="/images/no_collect.png" wx:if="{{item.flag == false}}" mode ="aspectFit" bindtap="collection" style="width: 15%; height: 100%;"></image>
+          <image data-id='{{item.id}}' id='{{item.id}}' src="/images/collect.png" wx:else mode ="aspectFit" bindtap="collection" style="width: 15%; height: 100%;"></image>
+        <!-- </view> -->
+        
+      </view>
+      
+      <!-- <view >{{item.address}}</view>  -->
+      <!-- <view >{{item.introduction}}</view>  -->
+    </view>
+    
+  </view>
+  <view class="scrollSpase"></view>
+  </scroll-view>
+
+</view>
+
