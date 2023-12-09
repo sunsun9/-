@@ -1,10 +1,23 @@
 <!--pages/food/food.wxml-->
 <view class = "content">
   <!--标题名字-->
-  <view class = "content-title">{{name}}</view>
+  <view class="title">
+  <!--店家名称及收藏搜索设置-->
+    <view class = "content-title" style="width: 50%; font-family: KaiTi;">
+      <image src="/images/shop_name.png" style="width: 25px; height: 25px;"/>
+      {{name}}
+    </view>
+    <image src="/images/search.png" bindtap="go_search" style="width: 20px; height: 20px; margin-left: 20%;" />
+    <image src="/images/shop_no.png" wx:if="{{shop.flag == false}}" mode ="aspectFit" bindtap="shop_collection" style="width: 25px; height: 25px;margin-left: 10px;"></image>
+    <image src="/images/shop.png" wx:else mode ="aspectFit" bindtap="shop_collection" style="width: 25px; height: 25px;margin-left: 10px;"></image>
+  </view>
+  <view class="title" style="margin-left: 20px; font-size: 15px;">
+    <image src="/images/go.png" style="width: 30px; height: 30px; "bindtap="go_graph"/>
+    具体位置：{{shop.address}}
+  </view>
 
   <!-- 食物列表 -->
-  <scroll-view scroll-y="true" style="height: 700px; margin-top: -50px;"> 
+  <scroll-view scroll-y="true" style="height: 700px;"> 
     <!--店家列表-->
   <view class="shop" wx:for="{{foodList}}" wx:key="id">
     <!--左侧商品图片-->

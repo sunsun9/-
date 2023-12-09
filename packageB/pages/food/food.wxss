@@ -1,18 +1,21 @@
 /* pages/food/food.wxss */
+.title{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
 .content-title {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding: 150rpx 0;
-  box-sizing: border-box;
-  margin-top: -60px;
-  font-size: 20px;
+  margin-left: 20px;
+  font-size: 25px;
 }
 
 .shop{
   display: flex;
-  border-bottom: 15rpx solid rgb(219, 217, 217);
+  border-bottom: 15rpx solid rgb(185, 210, 235);
 }
 
 .shop_img{

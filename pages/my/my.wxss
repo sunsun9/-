@@ -1,5 +1,6 @@
 /* pages/my/my.wxss */
 .content-title {
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;

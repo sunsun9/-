@@ -152,7 +152,7 @@ Page({
     wx.request({
       // 注意，如果小程序开启校验合法域名时必须使用https协议
       //在测试的情况下可以不开启域名校验
-      url: 'http://192.168.43.248:8080/query/getShopByFoodId',
+      url: 'http://192.168.43.248:8080/query/getAddressByFoodId',
       data: {
         // 接口设置的固定参数值
         id: id
@@ -164,7 +164,6 @@ Page({
   	  },
   	  // 请求成功时的处理
       success: res => {
-        // 一般在这一打印下看看是否拿到数据
         console.log(res.data.data)
         //得到目的地位置坐标
         var longitude = parseFloat(res.data.data.longitude)

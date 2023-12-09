@@ -1,8 +1,15 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/my/my"
-    
+    "pages/my/my",
+    "packageC/pages/shop8",
+    "packageC/pages/shop8/shop8",
+    "packageC/pages/shop9/shop9",
+    "packageC/pages/shop10/shop10",
+    "packageC/pages/shop11/shop11",
+    "packageC/pages/shop12/shop12",
+    "packageC/pages/shop14/shop14",
+    "packageC/pages/shop16/shop16"
   ],
   "subpackages": [
     {
@@ -11,7 +18,8 @@
         "pages/collection/collection",
         "pages/search/search"
       ]
-    }, {
+    },
+    {
       "root": "packageB",
       "name": "pack2",
       "pages": [
@@ -53,7 +61,6 @@
       "sdkVersionEnd": "15.255.255"
     }
   },
-  
   "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序定位"

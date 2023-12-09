@@ -10,8 +10,31 @@
   </view>
 </view>
 
+<!--推荐图片滚动实现-->
+<view style="margin-top: 10px;">
+  <view >
+    <image src="/images/tuijian.png" style="width: 18px; height: 18px;margin-left: 10px;"/>
+    <text style="font-family: KaiTi; margin-bottom: 10px; color: #86b8ea;">今日推荐</text>
+  </view>
+  
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{1000}}" style="margin-top: 5px;">
+    <view wx:for="{{foodList}}" wx:key="id">
+      <swiper-item>
+        <image src="{{item.img}}"  style="width: 100%;"/>
+      </swiper-item>
+    </view>
+  </swiper>
+</view>
+
+
+
 <!--map组件-->
-<map id="map"  bindregionchange="bindRegionChange" bindmarkertap="markerclick" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" controls="{{controls}}" style="width: {{mapw}}; height: {{maph}};" scale="{{scale}}" show-location></map>
+<view style="margin-top: 15px;">
+  <image src="/images/graph.png" style="width: 18px; height: 18px;margin-left: 10px;"/>
+  <text style="font-family: KaiTi; margin-top: 10px; color: #86b8ea;">地图概览</text>
+  <map id="map"  bindregionchange="bindRegionChange" bindmarkertap="markerclick" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" controls="{{controls}}" style="width: {{mapw}}; height: {{maph}};" scale="{{scale}}" show-location></map>
+</view>
+
 
 </view>
 

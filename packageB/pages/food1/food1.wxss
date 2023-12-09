@@ -12,7 +12,7 @@
 
 .shop{
   display: flex;
-  border-bottom: 15rpx solid rgb(221, 236, 199);
+  border-bottom: 15rpx solid rgb(185, 210, 235);
 }
 
 .shop_img{
