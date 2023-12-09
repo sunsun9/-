@@ -2,57 +2,87 @@
 const app = getApp()
 Page({
   data: {
-    name: '',
     id: '',
     foodList: [],
     openid: null
   },
 
-  onLoad:function(){
+  onLoad:function(e){
+    this.setData({
+      id: e.id
+    })
+    console.log(this.data.id)
     var that = this
     wx.request({
       url: 'http://192.168.43.248:3000/session',
       data: { token: app.globalData.token },
       success: res => {
-        // console.log("Aa")
         this.setData({
           openid:res.data.openid.openid
         })
 
-        //根据id查找商店
-        wx.request({
-          // 注意，如果小程序开启校验合法域名时必须使用https协议
-          //在测试的情况下可以不开启域名校验
-          url: 'http://192.168.43.248:8080/query/getFavoriteByUserId',
-          data: {
-            // 接口设置的固定参数值
-            user_id: this.data.openid
-          },
-          // 请求的方法
-          method: 'POST',
-          header: {
-            'content-type': 'application/json' // 默认值
-          },
-          // 请求成功时的处理
-          success: res => {
-            // console.log(res.data.data)
-            for(var i=0;i<res.data.data.length;i++)
-            {
-              var newarray = {
-                id:res.data.data[i].id,
-                name:res.data.data[i].name,
-                shop_id:res.data.data[i].shop_id,
-                img: "https://gitee.com/sun1123/images/raw/master/" + res.data.data[i].id +".jpg",
-                flag: res.data.data[i].flag
-              };        
-              that.data.foodList = that.data.foodList.concat(newarray);
-              that.setData({
-                foodList: that.data.foodList
-              });             
+        //id为1 表示美食收藏界面
+        if (this.data.id == 1){
+          //根据id查找商店
+          wx.request({
+            url: 'http://192.168.43.248:8080/query/getFavoriteByUserId',
+            data: {
+              user_id: this.data.openid
+            },
+            method: 'POST',
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success: res => {
+              for(var i=0;i<res.data.data.length;i++)
+              {
+                var newarray = {
+                  id:res.data.data[i].id,
+                  name:res.data.data[i].name,
+                  shop_id:res.data.data[i].shop_id,
+                  img: "https://gitee.com/sun1123/images/raw/master/" + res.data.data[i].id +".jpg",
+                  flag: res.data.data[i].flag
+                };        
+                that.data.foodList = that.data.foodList.concat(newarray);
+                that.setData({
+                  foodList: that.data.foodList
+                });             
+              }
+              console.log(that.data.foodList)
             }
-            console.log(that.data.foodList)
-          }
-        })
+          })
+        }
+
+        //id为2 表示店铺收藏
+        else if (this.data.id == 2){
+          //根据id查找商店
+          wx.request({
+            url: 'http://192.168.43.248:8080/query/getShop_UserByUserId',
+            data: {
+              user_id: this.data.openid
+            },
+            method: 'POST',
+            header: {
+              'content-type': 'application/json' // 默认值
+            },
+            success: res => {
+              for(var i=0;i<res.data.data.length;i++)
+              {
+                var newarray = {
+                  id:res.data.data[i].id,
+                  name:res.data.data[i].name,
+                  img: "https://gitee.com/sun1123/shop_img/raw/master/shop" + res.data.data[i].id +".jpg",
+                  flag: res.data.data[i].flag
+                };        
+                that.data.foodList = that.data.foodList.concat(newarray);
+                that.setData({
+                  foodList: that.data.foodList
+                });             
+              }
+              console.log(that.data.foodList)
+            }
+          })
+        }
       }
     })  
   },
@@ -64,56 +94,42 @@ Page({
     //根据id得到元素所在位置
     let index = this.data.foodList.findIndex( item => item.id == id);
     console.log(index)//打印元素所在位置
-    if(this.data.foodList[index].flag == false){
-      this.setData({
-        ['foodList[' + index +'].flag'] : true
-      }) 
-      
-      //在数据库中添加记录          
-      //添加收藏数据
+    
+    that.data.foodList.splice(index, 1)
+    //从列表中删除 从而从屏幕显示上删除
+    this.setData({
+      foodList: that.data.foodList
+    })
+    if (this.data.id == 1){
+      //删除数据库食物收藏记录
       wx.request({
-      // 注意，如果小程序开启校验合法域名时必须使用https协议
-      //在测试的情况下可以不开启域名校验
-        url: 'http://192.168.43.248:8080/manage/addfavorite',
+        url: 'http://192.168.43.248:8080/manage/deleteFavorite',
         data: {
-        // 接口设置的固定参数值
           food_id: id,
           user_id: this.data.openid
         },
-        // 请求的方法
         method: 'POST',
         header: {
-          'content-type': 'application/json' // 默认值
+           'content-type': 'application/json' // 默认值
         },
-        // 请求成功时的处理
         success: res => {
           console.log(res.data)
         }
       })
     }
-    else{
-      that.data.foodList.splice(index, 1)
-      //从列表中删除 从而从屏幕显示上删除
-      this.setData({
-        foodList: that.data.foodList
-      })
 
-      //删除数据库记录
+    //删除数据库店铺收藏记录
+    else{
       wx.request({
-        // 注意，如果小程序开启校验合法域名时必须使用https协议
-        //在测试的情况下可以不开启域名校验
-        url: 'http://192.168.43.248:8080/manage/deleteFavorite',
+        url: 'http://192.168.43.248:8080/manage/deleteShop_User',
         data: {
-          // 接口设置的固定参数值
-          food_id: id,
+          shop_id: id,
           user_id: this.data.openid
         },
-        // 请求的方法
         method: 'POST',
         header: {
            'content-type': 'application/json' // 默认值
         },
-        // 请求成功时的处理
         success: res => {
           console.log(res.data)
         }

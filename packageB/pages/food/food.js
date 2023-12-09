@@ -20,26 +20,21 @@ Page({
       url: 'http://192.168.43.248:3000/session',
       data: { token: app.globalData.token },
       success: res => {
-        // console.log(res.data)
         this.setData({
           openid:res.data.openid.openid
         })
+
         //根据shop_id查询店家信息
         wx.request({
-          // 注意，如果小程序开启校验合法域名时必须使用https协议
-          //在测试的情况下可以不开启域名校验
           url: 'http://192.168.43.248:8080/query/getShopByShopId',
           data: {
-            // 接口设置的固定参数值
             id: this.data.id,     //店家id
             user_id: this.data.openid
           },
-          // 请求的方法
           method: 'POST',
           header: {
             'content-type': 'application/json' // 默认值
           },
-          // 请求成功时的处理
           success: res => {
             console.log(res.data.data)
             that.setData({
@@ -51,22 +46,16 @@ Page({
 
         //根据id查找食物
         wx.request({
-          // 注意，如果小程序开启校验合法域名时必须使用https协议
-          //在测试的情况下可以不开启域名校验
           url: 'http://192.168.43.248:8080/query/getFoodByShopId',
           data: {
-            // 接口设置的固定参数值
             id: this.data.id,
             user_id: this.data.openid
           },
-          // 请求的方法
           method: 'POST',
           header: {
             'content-type': 'application/json' // 默认值
           },
-          // 请求成功时的处理
-          success: res => {
-            // console.log(res.data.data)
+          success: res => {                               
             for(var i=0;i<res.data.data.length;i++)
             {
               var newarray = {
@@ -81,7 +70,6 @@ Page({
                 foodList: that.data.foodList
               });             
             }
-            // console.log(that.data.foodList)
           }
         })
       }
@@ -98,23 +86,19 @@ Page({
       this.setData({
         ['foodList[' + index +'].flag'] : true
       }) 
+
       //在数据库中添加记录          
       //添加收藏数据
       wx.request({
-      // 注意，如果小程序开启校验合法域名时必须使用https协议
-      //在测试的情况下可以不开启域名校验
         url: 'http://192.168.43.248:8080/manage/addfavorite',
         data: {
-        // 接口设置的固定参数值
           food_id: id,
           user_id: this.data.openid
         },
-        // 请求的方法
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
         },
-        // 请求成功时的处理
         success: res => {
           console.log(res.data)
         }
@@ -126,20 +110,15 @@ Page({
       })
       //删除数据库记录 
       wx.request({
-        // 注意，如果小程序开启校验合法域名时必须使用https协议
-        //在测试的情况下可以不开启域名校验
         url: 'http://192.168.43.248:8080/manage/deleteFavorite',
         data: {
-          // 接口设置的固定参数值
           food_id: id,
           user_id: this.data.openid
         },
-        // 请求的方法
         method: 'POST',
         header: {
            'content-type': 'application/json' // 默认值
         },
-        // 请求成功时的处理
         success: res => {
           console.log(res.data)
         }
@@ -156,20 +135,15 @@ Page({
       //在数据库中添加记录          
       //添加收藏数据
       wx.request({
-      // 注意，如果小程序开启校验合法域名时必须使用https协议
-      //在测试的情况下可以不开启域名校验
         url: 'http://192.168.43.248:8080/manage/addShop_User',
         data: {
-        // 接口设置的固定参数值
           shop_id: this.data.shop.id,
           user_id: this.data.openid
         },
-        // 请求的方法
         method: 'POST',
         header: {
           'content-type': 'application/json' // 默认值
         },
-        // 请求成功时的处理
         success: res => {
           console.log(res.data)
         }
@@ -181,20 +155,15 @@ Page({
       })
       //删除数据库记录
       wx.request({
-        // 注意，如果小程序开启校验合法域名时必须使用https协议
-        //在测试的情况下可以不开启域名校验
         url: 'http://192.168.43.248:8080/manage/deleteShop_User',
         data: {
-          // 接口设置的固定参数值
           shop_id: this.data.shop.id,
           user_id: this.data.openid
         },
-        // 请求的方法
         method: 'POST',
         header: {
            'content-type': 'application/json' // 默认值
         },
-        // 请求成功时的处理
         success: res => {
           console.log(res.data)
         }

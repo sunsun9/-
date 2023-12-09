@@ -49,11 +49,19 @@ Page({
     
   },
 
-  //前往收藏界面
+  //前往美食收藏界面
   go_collection: function(){
-    console.log("aaa")
+    var id = 1
     wx.navigateTo({
-      url: '/packageA/pages/collection/collection'
+      url: '/packageA/pages/collection/collection?id=' + id,
+    })
+  },
+
+  //前往店铺收藏界面
+  go_shopcollection: function(){
+    var id = 2
+    wx.navigateTo({
+      url: '/packageA/pages/collection/collection?id=' + id,
     })
   }
 })
