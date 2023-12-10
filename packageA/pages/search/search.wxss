@@ -199,6 +199,12 @@ left: 0;
 width: 100%;
 background: #fff;
 }
+
+.content{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .result {
   margin-top: -20px;
   height: 50px;

@@ -1,7 +1,6 @@
 <!--pages/search/search.wxml-->
 <view class="navbar custom-class" style='height:{{navHeight}}px;'>
   <view class="navbar-action-wrap navbar-action-group row item-center" style='top:{{navTop}}px;'>
-    <image style="width: 1rem; height: 1.2rem; " src="{{leftIcon}}" catchtap="goBack"></image>
   </view>
   <view class='navbar-title' style='top:{{navTop}}px'>
     <view class="search-input">
@@ -16,17 +15,18 @@
     </view>
   </view>
 </view>
+
+  <!-- 最近搜索 -->
 <view class="read-in">
-  <!-- 最近搜索 S -->
     <view class="headline" wx:if="{{historyStorage.length!=0}}" hidden="{{historyStorageShow?false:true}}">
       <view class="head-headline justify">
         <view class="headline-size">最近搜索</view>
         <view class="right size" catchtap="remove">清除</view>
       </view>
-      <!-- 最近搜索内容 S -->
+      <!-- 最近搜索内容 -->
       <view class="lately-main">
-        <view class="chunk" wx:for="{{historyStorage}}" wx:key="index" bindtap='routeToSearchResPage' data-index='{{index}}'>
-          <text>{{item}}</text>
+        <view class="chunk" wx:for="{{historyStorage}}" wx:key="index" data-index="{{index}}" bindtap='routeToSearchResPage'>
+          <text>{{item.context}}</text>
         </view>
       </view>
       <!-- 最近搜索内容 E -->
@@ -34,8 +34,10 @@
 </view>
 
 <view class="searchresult" wx:if="{{inputValue != ''}}" hidden="{{searchresult?false:true}}">
-  <view class="result" wx:for="{{searchResult}}" wx:key="id" bindtap="daohang" data-postname="{{item.result}}">
-    <view data-id='{{item.id}}' id='{{item.id}}' style="margin-top: 6%;">{{item.name}}</view>
+  <view class="result" wx:for="{{searchResult}}" wx:key="id" bindtap="daohang" data-postname="{{item.result}}" style="margin-top: 10px;">
+    <view  class="content" data-id='{{item.id}}' id='{{item.id}}' style="width: 100%;">
+    <image src="https://gitee.com/sun1123/images1/raw/master/{{item.id}}.jpg" style="width: 50px; height: 50px; border-radius: 10px;"/>
+    {{item.name}}</view>
     
   </view>
 </view>

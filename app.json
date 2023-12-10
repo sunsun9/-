@@ -1,15 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/my/my",
-    "packageC/pages/shop8",
-    "packageC/pages/shop8/shop8",
-    "packageC/pages/shop9/shop9",
-    "packageC/pages/shop10/shop10",
-    "packageC/pages/shop11/shop11",
-    "packageC/pages/shop12/shop12",
-    "packageC/pages/shop14/shop14",
-    "packageC/pages/shop16/shop16"
+    "pages/my/my"
   ],
   "subpackages": [
     {

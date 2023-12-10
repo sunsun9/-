@@ -6,15 +6,10 @@
       <button  style="background-color: white" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
       <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
     </button> 
-    
-    <!-- 用户昵称 -->
-    <!-- <view >
-      <input type="nickname" class="username" placeholder="请输入昵称"/>
-    </view> -->
   </view>
 
   <!-- 功能列表 -->
-  <!-- 查看收藏 -->
+  <!-- 1.查看收藏 -->
   <view class="collection">
     <image src="/images/collect2.png" style="width: 40px; height: 30px;margin-top: -5px; margin-left: 5px;"></image>
     <view class="collection_text">
@@ -23,7 +18,7 @@
     </view>
   </view>
 
-  <!--店铺收藏-->
+  <!--2.店铺收藏-->
   <view class="collection" style="margin-top: 10px;">
     <image src="/images/shop_collection.png" style="width: 40px; height: 30px; margin-left: 5px;"></image>
     <view class="collection_text">
@@ -32,12 +27,12 @@
     </view>
   </view>
 
-  <!--我的客服-->
+  <!--3.我的客服-->
   <view class="collection" style="margin-top: 10px;">
     <image src="/images/kefu.png" style="width: 40px; height: 30px; margin-left: 5px;"></image>
     <view class="collection_text">
       <view>我的客服</view>
-      <image src="/images/next.png" style="width: 20px; height: 20px; margin-right: 20px;" bindtap="go_collection"></image>      
+      <image src="/images/next.png" style="width: 20px; height: 20px; margin-right: 20px;" bindtap="go_kefu"></image>      
     </view>
   </view>
 </view>

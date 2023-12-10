@@ -63,5 +63,10 @@ Page({
     wx.navigateTo({
       url: '/packageA/pages/collection/collection?id=' + id,
     })
+  },
+
+  //前往我的客服界面
+  go_kefu: function(){
+    
   }
 })

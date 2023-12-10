@@ -1,9 +1,5 @@
 const App = getApp()
 Page({
- 
-  /**
-   * 页面的初始数据
-   */
   data: {
     // 自定义顶部导航
     // navHeight: App.globalData.navHeight,
@@ -22,18 +18,6 @@ Page({
     latitude: null
   },
 
-  // 点击返回上一级
-  goBack: function() {
-    let pages = getCurrentPages();      //获取小程序页面栈
-    let beforePage = pages[pages.length - 2];       //获取上个页面的实例对象
-    beforePage.setData({
-      txt: "修改数据了"
-    })
-    beforePage.goUpdate();           //触发上个页面自定义的go_update()方法
-    wx.navigateBack({
-      delta: 1
-    })
-  },
   /**
    * 获取顶部固定高度
    */
@@ -86,34 +70,28 @@ Page({
   /**
    * 点击搜索提交跳转并存储历史记录
    */
-  searchbegin: function (e) {
+  searchbegin: function () {
     let _this = this
-    var data = e.currentTarget.dataset;
     _this.data.replaceValue = _this.data.inputValue
+    var newarray = {
+      context:  _this.data.inputValue
+    };   
     wx: wx.setStorage({
       key: 'historyStorage',
-      data: _this.data.historyStorage.concat(_this.data.inputValue),
-      data: _this.data.historyStorage.concat(_this.data.replaceValue)
+      data: _this.data.historyStorage.concat(newarray),
     })
     wx.request({
-      // 注意，如果小程序开启校验合法域名时必须使用https协议
-      //在测试的情况下可以不开启域名校验
       url: 'http://192.168.43.248:8080/query/getFoodByName',
       data: {
-        // 接口设置的固定参数值
         name: this.data.inputValue
       },
-      // 请求的方法
       method: 'POST',
       header: {
     		'content-type': 'application/json' // 默认值
   	  },
-  	  // 请求成功时的处理
       success: res => {
-        // 一般在这一打印下看看是否拿到数据
         console.log(res.data.data)
-        
-        if (res.statusCode == 200) {
+        if (res.statusCode == 200) { 
           var array = res.data.data
           var that = this
           that.setData({
@@ -143,7 +121,6 @@ Page({
   },
   goUpdate: function () {
     this.onLoad()
-    // console.log("我更新啦")
   },
 
   daohang: function(e){
@@ -190,5 +167,17 @@ Page({
       })
       }
     })
+  },
+
+  routeToSearchResPage: function(e){
+    var context = this.data.historyStorage[e.currentTarget.dataset.index].context
+    this.setData({
+      inputValue: context
+    })
+    this.setData({
+      searchresult: true,
+    })
+
+    this.searchbegin()
   }
 })

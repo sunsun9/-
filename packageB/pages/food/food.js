@@ -23,7 +23,6 @@ Page({
         this.setData({
           openid:res.data.openid.openid
         })
-
         //根据shop_id查询店家信息
         wx.request({
           url: 'http://192.168.43.248:8080/query/getShopByShopId',
@@ -43,7 +42,6 @@ Page({
             console.log(that.data.shop)
           }
         })
-
         //根据id查找食物
         wx.request({
           url: 'http://192.168.43.248:8080/query/getFoodByShopId',
