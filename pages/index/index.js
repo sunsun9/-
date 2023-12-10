@@ -200,8 +200,10 @@ Page({
         url: '/packageB/pages/food1/food1',
       })
     }
-    else if(markerId == 8){
-
+    else {
+      wx.navigateTo({
+        url: '/packageB/pages/food/food?name= ' + '&id=' + markerId,
+      })
     }
   },
 

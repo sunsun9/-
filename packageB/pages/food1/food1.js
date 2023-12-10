@@ -8,7 +8,6 @@ Page({
       {
         id: 1,
         url: "/images/shop1.jpg",
-        url2: "/images/shop1.jpg",
         flag: false,
         name: "卤汁肴",
         address: "地址：沁园春食堂",
@@ -17,7 +16,6 @@ Page({
       {
         id: 2,
         url: "/images/shop2.jpg",
-        url2: "/images/shop1.jpg",
         flag: false,
         name: "原味村中华拌饭·三汁焖锅",
         address: "地址：沁园春食堂",
@@ -25,8 +23,7 @@ Page({
       },
       {
         id: 3,
-        url: "/images/shop1.jpg",
-        url2: "/images/shop1.jpg",
+        url: "https://gitee.com/sun1123/shop_img/raw/master/shop3.jpg",
         flag: false,
         name: "石板高丽拌饭馆",
         address: "地址：沁园春食堂",
@@ -35,7 +32,6 @@ Page({
       {
         id: 4,
         url: "/images/shop4.jpg",
-        url2: "/images/shop1.jpg",
         flag: false,
         name: "派乐汉堡",
         address: "地址：沁园春食堂",
@@ -43,8 +39,7 @@ Page({
       },
       {
         id: 5,
-        url: "/images/shop1.jpg",
-        url2: "/images/shop1.jpg",
+        url: "https://gitee.com/sun1123/shop_img/raw/master/shop5.jpg",
         flag: false,
         name: "沙县小吃",
         address: "地址：沁园春食堂",
@@ -53,7 +48,6 @@ Page({
       {
         id: 6,
         url: "/images/shop7.jpg",
-        url2: "/images/shop1.jpg",
         flag: false,
         name: "氢简厨房",
         address: "地址：沁园春食堂",
@@ -61,8 +55,7 @@ Page({
       },
       {
         id: 7,
-        url: "/images/shop1.jpg",
-        url2: "/images/shop1.jpg",
+        url: "https://gitee.com/sun1123/shop_img/raw/master/shop7.jpg",
         flag: false,
         name: "长青巷桥头排骨",
         address: "地址：沁园春食堂",

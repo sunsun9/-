@@ -1,5 +1,6 @@
 <!--pages/collection/collection.wxml-->
-<view class = "content-title">我的收藏</view>
+<view class = "content-title" wx:if="{{id == 1}}">美食收藏</view>
+<view class = "content-title" wx:if="{{id == 2}}">店铺收藏</view>
 
 <!-- 食物列表 -->
 <scroll-view scroll-y="true" style="height: 700px; margin-top: -50px;"> 
