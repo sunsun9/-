@@ -4,7 +4,7 @@ Page({
     // 自定义顶部导航
     // navHeight: App.globalData.navHeight,
     // navTop: App.globalData.navTop,
-    // 图标
+    filterflag: false,
     searchIcon: "/images/search.png",
     upperLeftArrow: "../../../img/icon/icon-upper-left-arrow.png",
     historyStorage: [],        //历史搜索
@@ -64,6 +64,9 @@ Page({
     })
     this.setData({
       searchresult: true,
+    })
+    this.setData({
+      searchResult: [],
     })
   },
  
@@ -169,6 +172,7 @@ Page({
     })
   },
 
+  //点击历史搜索可实现搜索
   routeToSearchResPage: function(e){
     var context = this.data.historyStorage[e.currentTarget.dataset.index].context
     this.setData({
@@ -179,5 +183,18 @@ Page({
     })
 
     this.searchbegin()
+  },
+
+  //比较函数
+  compare: function(obj1, obj2){
+    var val1 = obj1.hit;
+    var val2 = obj2.name;
+    if (val1 < val2) {
+        return -1;
+    } else if (val1 > val2) {
+        return 1;
+    } else {
+        return 0;
+    }
   }
 })

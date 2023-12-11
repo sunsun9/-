@@ -11,7 +11,6 @@ left: 0;
 z-index: 10;
 flex-shrink: 0;
 background-color: white;
-margin-top: 10px;
 }
 
 .navbar-title {

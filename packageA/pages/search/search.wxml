@@ -1,5 +1,5 @@
 <!--pages/search/search.wxml-->
-<view class="navbar custom-class" style='height:{{navHeight}}px;'>
+<view class="navbar custom-class" style='height: 9%; background-color: white;'>
   <view class="navbar-action-wrap navbar-action-group row item-center" style='top:{{navTop}}px;'>
   </view>
   <view class='navbar-title' style='top:{{navTop}}px'>
@@ -33,11 +33,19 @@
     </view>
 </view>
 
-<view class="searchresult" wx:if="{{inputValue != ''}}" hidden="{{searchresult?false:true}}">
+<!--搜索结果显示-->
+<view class="searchresult" wx:if="{{inputValue != ''}}" hidden="{{searchresult?false:true}}" style="height: 80%; margin-top: 0px;">
+  <view class="content" style="justify-content: space-between">
+    <text style="font-size: 12px; margin-left: 10px;">收藏优先</text>
+    <text style="font-size: 12px;">距离优先</text>
+    <view class="content" style="font-size: 12px;" bind:tap="filterTab">筛选
+      <image src="/images/shaixuan.png" style="margin-right: 5px; width: 20px; height: 20px;"/>
+    </view>
+  </view>
   <view class="result" wx:for="{{searchResult}}" wx:key="id" bindtap="daohang" data-postname="{{item.result}}" style="margin-top: 10px;">
     <view  class="content" data-id='{{item.id}}' id='{{item.id}}' style="width: 100%;">
     <image src="https://gitee.com/sun1123/images1/raw/master/{{item.id}}.jpg" style="width: 50px; height: 50px; border-radius: 10px;"/>
-    {{item.name}}</view>
+    {{ item.name}}</view>
     
   </view>
 </view>

@@ -3,7 +3,7 @@
 <view class = "content-title" wx:if="{{id == 2}}">店铺收藏</view>
 
 <!-- 食物列表 -->
-<scroll-view scroll-y="true" style="height: 700px; margin-top: -50px;"> 
+<scroll-view scroll-y="true" style="height: 80%; margin-top: -50px;"> 
     <!--店家列表-->
   <view class="shop" wx:for="{{foodList}}" wx:key="id">
     <!--左侧商品图片-->

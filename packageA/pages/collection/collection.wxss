@@ -1,6 +1,6 @@
 /* pages/collection/collection.wxss */
 .content-title {
-  height: 100%;
+  height: 20%;
   margin-top: -60px;
   display: flex;
   flex-direction: column;
@@ -8,6 +8,7 @@
   justify-content: space-between;
   padding: 150rpx 0;
   box-sizing: border-box;
+  font-size: 25px;
 }
 
 .content-title {
