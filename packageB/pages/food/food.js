@@ -39,7 +39,6 @@ Page({
             that.setData({
               shop: res.data.data
             });   
-            console.log(that.data.shop)
           }
         })
         //根据id查找食物
@@ -172,7 +171,7 @@ Page({
   //前往搜索页面
   go_search: function(){
     wx.navigateTo({
-      url: '/packageA/pages/search/search'
+      url: '/packageA/pages/search/search?flag=1&shop_name=' + this.data.shop.name
     })
   },
 

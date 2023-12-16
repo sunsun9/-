@@ -177,8 +177,7 @@ Page({
           markers: mark
         })
       },
-  //   })
-  // },
+
   // 地图移动时，更新地图上的标记点
   bindRegionChange: function(e) {
     if (e.type === 'end') {
@@ -209,7 +208,7 @@ Page({
 
   tosearch: function(){
     wx.navigateTo({
-      url: '/packageA/pages/search/search',
+      url: '/packageA/pages/search/search?flag=0&shop_name=""',
     })
   }
 })

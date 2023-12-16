@@ -4,18 +4,33 @@ Page({
     // 自定义顶部导航
     // navHeight: App.globalData.navHeight,
     // navTop: App.globalData.navTop,
-    filterflag: false,
+    color1: "color: black;",
+    color2: "color: black;",
+    filterflag: true,
     searchIcon: "/images/search.png",
     upperLeftArrow: "../../../img/icon/icon-upper-left-arrow.png",
     historyStorage: [],        //历史搜索
     historyStorageShow: false,
-    // searchresult: false,
     inputValue: "",        //输入框输入的值
     replaceValue: "",     //替换输入框的值
     searchresult: false,
     searchResult: [],
     longitude: null,
-    latitude: null
+    latitude: null,
+    flag:null,
+    shop_name: null,
+  },
+
+  onReady: function() {
+    wx.getLocation({
+      type: 'gcj02',
+      success: res => {
+        this.setData({
+          longitude: res.longitude,
+          latitude: res.latitude
+        })
+      }
+    })
   },
 
   /**
@@ -29,7 +44,7 @@ Page({
   },
  
   /**
-   * 清除
+   * 3.清除
    */
   remove: function () {
     var _this = this
@@ -53,7 +68,6 @@ Page({
     })
   },
  
- 
   /**
    * 获取input的值
    */
@@ -75,18 +89,26 @@ Page({
    */
   searchbegin: function () {
     let _this = this
-    _this.data.replaceValue = _this.data.inputValue
-    var newarray = {
-      context:  _this.data.inputValue
-    };   
-    wx: wx.setStorage({
-      key: 'historyStorage',
-      data: _this.data.historyStorage.concat(newarray),
-    })
+    if (this.data.flag == 0){
+      _this.data.replaceValue = _this.data.inputValue
+      var newarray = {
+        context:  _this.data.inputValue
+      };   
+      wx: wx.setStorage({
+        key: 'historyStorage',
+        data: _this.data.historyStorage.concat(newarray),
+      })
+    }
+    else if(this.data.flag == 1){
+      _this.data.replaceValue = this.data.shop_name + '%' + _this.data.inputValue
+    }
+    
     wx.request({
       url: 'http://192.168.43.248:8080/query/getFoodByName',
       data: {
-        name: this.data.inputValue
+        name: this.data.replaceValue,
+        longitude: this.data.longitude,
+        latitude: this.data.latitude
       },
       method: 'POST',
       header: {
@@ -108,7 +130,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function(e) {
+    //获取页面跳转的参数
+    this.setData({
+      flag: e.flag,
+      shop_name: e.shop_name
+    })
+
     // 历史搜索
     let that = this
     wx.getStorage({
@@ -122,10 +150,12 @@ Page({
       }
     })
   },
+
   goUpdate: function () {
     this.onLoad()
   },
 
+  //1.点击列表跳转导航
   daohang: function(e){
     var id = e.target.id
     console.log(id)
@@ -172,7 +202,7 @@ Page({
     })
   },
 
-  //点击历史搜索可实现搜索
+  //2.点击历史搜索可实现搜索
   routeToSearchResPage: function(e){
     var context = this.data.historyStorage[e.currentTarget.dataset.index].context
     this.setData({
@@ -181,14 +211,25 @@ Page({
     this.setData({
       searchresult: true,
     })
-
     this.searchbegin()
   },
 
-  //比较函数
-  compare: function(obj1, obj2){
-    var val1 = obj1.hit;
-    var val2 = obj2.name;
+  //比较函数_从大到小
+  compare1: function(obj1, obj2){
+    var val1 = obj1.hits;
+    var val2 = obj2.hits;
+    if (val1 < val2) {
+        return 1;
+    } else if (val1 > val2) {
+        return -1;
+    } else {
+        return 0;
+    }
+  },
+  //比较函数_从小到大
+  compare2: function(obj1, obj2){
+    var val1 = obj1.distance;
+    var val2 = obj2.distance;
     if (val1 < val2) {
         return -1;
     } else if (val1 > val2) {
@@ -196,5 +237,37 @@ Page({
     } else {
         return 0;
     }
-  }
+  },
+
+
+  //4.点击收藏优先响应
+  collection_first: function(){
+    this.data.searchResult = this.data.searchResult.sort(this.compare1)
+    this.setData({
+      searchResult: this.data.searchResult
+    })
+    this.setData({
+      color1: "color: #86b8ea;"
+    })
+    this.setData({
+      color2: "color: black;"
+    })
+    console.log(this.data.searchResult)
+  },
+
+  //5.点击距离优先响应
+  distance_first: function(){
+    this.data.searchResult = this.data.searchResult.sort(this.compare2)
+    this.setData({
+      searchResult: this.data.searchResult
+    })
+    this.setData({
+      color2: "color: #86b8ea;"
+    })
+    this.setData({
+      color1: "color: black;"
+    })
+    console.log(this.data.searchResult)
+  },
+
 })

@@ -2,6 +2,7 @@
 <view class="navbar custom-class" style='height: 9%; background-color: white;'>
   <view class="navbar-action-wrap navbar-action-group row item-center" style='top:{{navTop}}px;'>
   </view>
+  <!--搜索功能-->
   <view class='navbar-title' style='top:{{navTop}}px'>
     <view class="search-input">
       <span class="search-con">
@@ -18,7 +19,7 @@
 
   <!-- 最近搜索 -->
 <view class="read-in">
-    <view class="headline" wx:if="{{historyStorage.length!=0}}" hidden="{{historyStorageShow?false:true}}">
+    <view class="headline" wx:if="{{historyStorage.length!=0 && flag == 0}}" hidden="{{historyStorageShow?false:true}}">
       <view class="head-headline justify">
         <view class="headline-size">最近搜索</view>
         <view class="right size" catchtap="remove">清除</view>
@@ -35,12 +36,12 @@
 
 <!--搜索结果显示-->
 <view class="searchresult" wx:if="{{inputValue != ''}}" hidden="{{searchresult?false:true}}" style="height: 80%; margin-top: 0px;">
-  <view class="content" style="justify-content: space-between">
-    <text style="font-size: 12px; margin-left: 10px;">收藏优先</text>
-    <text style="font-size: 12px;">距离优先</text>
-    <view class="content" style="font-size: 12px;" bind:tap="filterTab">筛选
-      <image src="/images/shaixuan.png" style="margin-right: 5px; width: 20px; height: 20px;"/>
+  <view class="content" style="justify-content: space-between; margin-top: 5px;">
+    <view class="content" style="margin-left: 10px; font-size: 12px;">筛选
+      <image src="/images/shaixuan.png" style="width: 20px; height: 20px;"/>
     </view>
+    <text style="font-size: 12px; {{color1}}" bind:tap="collection_first">收藏优先</text>
+    <text wx:if="{{flag == 0}}" style="margin-right: 10px; font-size: 12px; {{color2}}" bind:tap="distance_first">距离优先</text>
   </view>
   <view class="result" wx:for="{{searchResult}}" wx:key="id" bindtap="daohang" data-postname="{{item.result}}" style="margin-top: 10px;">
     <view  class="content" data-id='{{item.id}}' id='{{item.id}}' style="width: 100%;">
