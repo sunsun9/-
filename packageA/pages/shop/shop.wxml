@@ -1,0 +1,53 @@
+<view class = "content">
+    <!-- 用户信息 -->
+  <view class="userinfo">
+    <!-- 用户头像 -->
+    <button  style="background-color: white" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+      <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
+    </button> 
+  </view>
+
+<!--1: 未注册，输入对应的注册信息-->
+<view class="zongxiang" wx:if="{{flag == false}}">
+    <view class="hengxiang" style="margin-top: 10px; margin-left: 50px;">
+      <text>店名:</text>
+      <input style="margin-left: 10px;" type="text" placeholder="请输入店名" value="{{name}}" bindinput="getName"/>
+    </view>
+    <view class="hengxiang" style="margin-top: 10px; margin-left: 50px;">
+      <text>地址:</text>
+      <input style="margin-left: 10px;" type="text" placeholder="请输入地址" value="{{address}}" bindinput="getAddress"/>
+    </view>
+    <view class="hengxiang" style="margin-top: 10px; margin-left: 50px;">
+      <text>经度:</text>
+      <input style="margin-left: 10px;" type="text" placeholder="请输入经度" value="{{longitude}}" bindinput="getLongitude"/>
+    </view>
+    <view class="hengxiang" style="margin-top: 10px; margin-left: 50px;">
+      <text>纬度:</text>
+      <input style="margin-left: 10px;" type="text" placeholder="请输入纬度" value="{{latitude}}" bindinput="getLatitude"/>
+    </view>
+    <button  bind:tap="zhuce" style="background-color: #86b8ea; width: 30%; margin-top: 20px;">注册</button>
+  </view>
+ 
+<!--2: 已注册，显示商家对应信息-->  
+    <scroll-view wx:if="{{flag == true}}" scroll-y="true" style="height: 70%;"> 
+    <!--店家列表-->
+    <view class="shop" wx:for="{{foodList}}" wx:key="id">
+      <!--左侧商品图片-->
+      <view class = "shop_img" >
+        <image src = "{{item.img}}"  style="width: 110px; height: 110px; border-radius: 20px;"/>
+      </view>
+      <!--文字信息-->
+      <view class = "shop_text">
+        <view class = "collection">
+          {{item.name}}
+            <text>收藏量：{{item.hits}}</text>        
+        </view>
+      </view>
+      <!--删除按钮-->
+      <view>
+        <button data-id='{{item.id}}' id='{{item.id}}' style="background-color: #86b8ea; width: 5%; height: 10%; font-size: 12px; display:flex; align-items: center; justify-content: center;;" bind:tap="remove">删除</button>
+      </view>
+    </view>
+    </scroll-view>
+  
+</view>

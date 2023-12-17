@@ -1,4 +1,3 @@
-/* pages/my/my.wxss */
 .userinfo {
   position: relative;
   width: 750rpx;
@@ -22,28 +21,44 @@
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
-.username{
-  color: black;
-  font-family: "楷体";
-}
-.collection{
+.hengxiang{
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 }
 
-.collection_text{
+.zongxiang{
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shop{
+  display: flex;
+  border-bottom: 15rpx solid rgb(185, 210, 235);
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-left: 10px;
-  color: black;
-  font-size: large;
-  font-family: "楷体";
-  border-bottom: 2rpx solid rgb(173, 172, 172);
-  margin-right: 10px;
 }
- 
+
+.shop_img{
+  flex:1;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.shop_text{
+  flex:1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.collection{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}

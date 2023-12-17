@@ -30,15 +30,9 @@
     <view class = "shop_text">
       <view class = "collection">
         <view>{{item.name}}</view>
-        <!-- <view ></view> -->
           <image data-id='{{item.id}}' id='{{item.id}}' src="/images/no_collect.png" wx:if="{{item.flag == false}}" mode ="aspectFit" bindtap="collection" style="width: 15%; height: 100%;"></image>
-          <image data-id='{{item.id}}' id='{{item.id}}' src="/images/collect.png" wx:else mode ="aspectFit" bindtap="collection" style="width: 15%; height: 100%;"></image>
-        <!-- </view> -->
-        
+          <image data-id='{{item.id}}' id='{{item.id}}' src="/images/collect.png" wx:else mode ="aspectFit" bindtap="collection" style="width: 15%; height: 100%;"></image>        
       </view>
-      
-      <!-- <view >{{item.address}}</view>  -->
-      <!-- <view >{{item.introduction}}</view>  -->
     </view>
     
   </view>

@@ -1,5 +1,5 @@
 <!--pages/my/my.wxml-->
-<view class = "content">
+<view >
     <!-- 用户信息 -->
   <view class="userinfo">
     <!-- 用户头像 -->
@@ -27,7 +27,16 @@
     </view>
   </view>
 
-  <!--3.我的客服-->
+  <!--3.商家入驻-->
+  <view class="collection" style="margin-top: 10px;">
+    <image src="/images/beshop.png" style="width: 40px; height: 30px; margin-left: 5px;"></image>
+    <view class="collection_text">
+      <view>商家入驻</view>
+      <image src="/images/next.png" style="width: 20px; height: 20px; margin-right: 20px;" bindtap="go_shop"></image>      
+    </view>
+  </view>
+
+  <!--4.我的客服-->
   <view class="collection" style="margin-top: 10px;">
     <image src="/images/kefu.png" style="width: 40px; height: 30px; margin-left: 5px;"></image>
     <view class="collection_text">

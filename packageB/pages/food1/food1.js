@@ -74,8 +74,5 @@ Page({
     wx.navigateTo({
       url: '/packageB/pages/food/food?name=' + name + '&id=' + id,
     })
-    
-    
-
   }
 })
