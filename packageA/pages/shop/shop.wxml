@@ -2,13 +2,11 @@
     <!-- 用户信息 -->
   <view class="userinfo">
     <!-- 用户头像 -->
-    <button  style="background-color: white" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-      <image class="userinfo-avatar" src="{{avatarUrl}}"></image>
-    </button> 
+    <image class="userinfo-avatar" src="{{imageUrl}}" bindtap="chooseImage"/>
   </view>
 
 <!--1: 未注册，输入对应的注册信息-->
-<view class="zongxiang" wx:if="{{flag == false}}">
+  <view class="zongxiang" wx:if="{{flag == false}}">
     <view class="hengxiang" style="margin-top: 10px; margin-left: 50px;">
       <text>店名:</text>
       <input style="margin-left: 10px;" type="text" placeholder="请输入店名" value="{{name}}" bindinput="getName"/>
@@ -25,10 +23,17 @@
       <text>纬度:</text>
       <input style="margin-left: 10px;" type="text" placeholder="请输入纬度" value="{{latitude}}" bindinput="getLatitude"/>
     </view>
-    <button  bind:tap="zhuce" style="background-color: #86b8ea; width: 30%; margin-top: 20px;">注册</button>
+    <button  bind:tap="zhuce" style="background-color: #86b8ea; width: 30%; margin-top: 40px;">注册</button>
+    
   </view>
  
 <!--2: 已注册，显示商家对应信息-->  
+    <view style="display: flex; justify-content: center; align-items: center; margin-top: -35px;">
+      <text style="font-size: 18px;">{{name}}</text>
+    </view>
+    
+    <button style="margin-top: 10px;" bind:tap="addFood">添加食物</button>
+    
     <scroll-view wx:if="{{flag == true}}" scroll-y="true" style="height: 70%;"> 
     <!--店家列表-->
     <view class="shop" wx:for="{{foodList}}" wx:key="id">

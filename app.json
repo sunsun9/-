@@ -10,7 +10,8 @@
         "pages/collection/collection",
         "pages/search/search",
         "pages/kefu/kefu",
-        "pages/shop/shop"
+        "pages/shop/shop",
+        "pages/add/add"
       ]
     },
     {

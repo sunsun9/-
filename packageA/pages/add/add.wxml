@@ -1,0 +1,21 @@
+<view class = "content">
+    <!-- 用户信息 -->
+  <view class="userinfo">
+    <!-- 用户头像 -->
+    <image class="userinfo-avatar" src="{{imageUrl}}" bindtap="chooseImage"/>
+  </view>
+
+<!--添加新食物-->
+  <view class="zongxiang">
+    <view class="hengxiang" style="margin-top: 10px; margin-left: 50px;">
+      <text>名称:</text>
+      <input style="margin-left: 10px;" type="text" placeholder="请输入食物名称" value="{{name}}" bindinput="getName"/>
+    </view>
+    <view class="hengxiang" style="margin-top: 10px; margin-left: 50px;">
+      <text>标签:</text>
+      <input style="margin-left: 10px;" type="text" placeholder="请输入食物标签" value="{{tag}}" bindinput="getTag"/>
+    </view>
+    <button  bind:tap="addfood" style="background-color: #86b8ea; width: 30%; margin-top: 40px;">确认</button>
+    
+  </view>
+</view>
